@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "895015902613",
+    "project_id": "gasagent-c8566",
+    "storage_bucket": "gasagent-c8566.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895015902613:android:f944c854723db9bb90ea9c",
+        "android_client_info": {
+          "package_name": "com.lucasmgana.onlinegasagent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895015902613-5nkh82hou7h40blbicgo1ahavtefo5lu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdCW0J1JWEfCoaDiTrlXs_lXq0ZxJSwXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895015902613-5nkh82hou7h40blbicgo1ahavtefo5lu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

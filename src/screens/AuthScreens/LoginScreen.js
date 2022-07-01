@@ -1,15 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {TouchableOpacity, TextInput, View, ImageBackground} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {Colors, styles} from '../../components/globalStyles.js/styles';
 import NormalText from '../../components/texts/NormalText';
 import Icon from 'react-native-vector-icons/Feather';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../store/action/authentication';
 
 const {card, button, container, text} = styles;
 
 const LoginScreen = ({navigation}) => {
+  const authState = useSelector(state => state.authState);
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    console.log('login clicked');
+    dispatch(login());
+    console.log('authState', authState);
+  };
+
+  useEffect(() => {
+  }, [dispatch]);
+
   return (
     <ImageBackground
       source={require('../../../assets/images/map.png')}
@@ -48,7 +63,11 @@ const LoginScreen = ({navigation}) => {
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <NormalText
-              style={{color: Colors.primary, fontFamily: 'SFUIDisplay-Semibold', fontSize: 28}}>
+              style={{
+                color: Colors.primary,
+                fontFamily: 'SFUIDisplay-Semibold',
+                fontSize: 28,
+              }}>
               Welcome Back!{' '}
             </NormalText>
             <Icon name="smile" color={Colors.primary} size={35} />
@@ -103,10 +122,15 @@ const LoginScreen = ({navigation}) => {
                 paddingVertical: 15,
               }}>
               <NormalText
-                style={{color: Colors.primary, fontFamily: 'SFUIDisplay-Medium', fontSize: 24}}>
+                style={{
+                  color: Colors.primary,
+                  fontFamily: 'SFUIDisplay-Medium',
+                  fontSize: 24,
+                }}>
                 Sign In
               </NormalText>
               <TouchableOpacity
+                onPress={handleLogin}
                 style={{
                   backgroundColor: Colors.primary,
                   height: 50,
@@ -135,7 +159,8 @@ const LoginScreen = ({navigation}) => {
                     fontSize: 14,
                     borderBottomWidth: 1,
                     alignSelf: 'flex-start',
-                    borderBottomColor: Colors.warning, fontFamily: 'SFUIDisplay-Medium'
+                    borderBottomColor: Colors.warning,
+                    fontFamily: 'SFUIDisplay-Medium',
                   }}>
                   Sign up
                 </NormalText>

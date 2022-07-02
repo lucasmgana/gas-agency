@@ -7,6 +7,8 @@ import AuthStack from './stacks/AuthStack';
 import MainStack from './MainStack';
 import {useDispatch, useSelector} from 'react-redux';
 import NavigatorDrawer from './Drawer/NavigatorDrawer';
+import {NavigationContainer} from '@react-navigation/native';
+import BottomTab from './Drawer/BottomTab';
 
 const AppStack = () => {
   const authState = useSelector(state => state.authState);
@@ -18,7 +20,9 @@ const AppStack = () => {
 
   return (
     <View style={{flex: 1}}>
-      {authState.isAuthenticated ? <NavigatorDrawer /> : <AuthStack />}
+      <NavigationContainer>
+        {authState.isAuthenticated ? <BottomTab /> : <AuthStack />}
+      </NavigationContainer>
     </View>
   );
 };

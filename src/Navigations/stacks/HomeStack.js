@@ -17,15 +17,13 @@ const Stack = createNativeStackNavigator();
 
 export default function HomeStack() {
   return (
-    <NavigationContainer independent={true}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.secondary} />
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
           animationTypeForReplace: 'push',
         }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Default" component={HomeScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
         <Stack.Screen
           options={{animation: 'fade_from_bottom'}}
@@ -45,6 +43,5 @@ export default function HomeStack() {
           component={BuyingScreen}
         />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 }

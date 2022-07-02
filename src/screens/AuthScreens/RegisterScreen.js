@@ -1,7 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import {TouchableOpacity, TextInput, View, ImageBackground} from 'react-native';
+import {
+  TouchableOpacity,
+  TextInput,
+  View,
+  ImageBackground,
+  Modal,
+} from 'react-native';
 import React, {useState} from 'react';
 
 import {Formik} from 'formik';
@@ -13,14 +19,87 @@ import Icon from 'react-native-vector-icons/Feather';
 import firestore from '@react-native-firebase/firestore';
 
 // our functionalities
-// import {register} from '../../API/gasApi';
+import {register} from '../../API/gasApi';
 
 const {card, button, container, text} = styles;
 
 const SignUpScreen = ({navigation}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedValue, setSelectedValue] = useState({});
+
+  const toggleVisible = () => {
+    setIsVisible(!isVisible);
+  };
+
+  const users = [
+    {
+      name: 'Client',
+      value: 'client',
+    },
+    {
+      name: 'Supplier',
+      value: 'supplier',
+    },
+  ];
+
+  const ModalContents = ({selections, fildvalue}) => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#0005',
+        }}>
+        <View
+          style={{
+            minHeight: '10%',
+            width: '80%',
+            backgroundColor: '#F9E9F9',
+            borderRadius: 18,
+            overflow: 'hidden',
+            padding: 10,
+          }}>
+          <TouchableOpacity
+            onPress={toggleVisible}
+            style={{alignItems: 'flex-end', padding: 10, marginTop: -10}}>
+            <NormalText style={{color: Colors.primary, fontSize: 22}}>
+              x
+            </NormalText>
+          </TouchableOpacity>
+          <View>
+            {selections?.map(selection => (
+              <TouchableOpacity
+                key={selection.weight}
+                onPress={() => {
+                  setSelectedValue(selection);
+                  fildvalue('userType', selection.value);
+                  toggleVisible();
+                }}
+                style={{
+                  padding: 5,
+                  backgroundColor: '#ccc5',
+                  marginVertical: 2,
+                  borderRadius: 8,
+                  paddingHorizontal: 15,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <NormalText style={{color: Colors.primary, fontSize: 12}}>
+                  {selection.name}
+                </NormalText>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   const [docExists, setExists] = useState(false);
   const ourHandleSubmitt = values => {
-    register(values);
+    console.log(values);
   };
 
   const register = async values => {
@@ -118,6 +197,7 @@ const SignUpScreen = ({navigation}) => {
               phone: '',
               password: '',
               confirm_password: '',
+              userType: 'client',
             }}
             validationSchema={formValidation}
             onSubmit={ourHandleSubmitt}>
@@ -125,6 +205,7 @@ const SignUpScreen = ({navigation}) => {
               handleChange,
               handleBlur,
               handleSubmit,
+              setFieldValue,
               values,
               errors,
               touched,
@@ -147,7 +228,10 @@ const SignUpScreen = ({navigation}) => {
                       Register as
                     </NormalText>
 
-                    <View
+                    <TouchableOpacity
+                      onPress={() => {
+                        toggleVisible();
+                      }}
                       style={{
                         width: '30%',
                         flexDirection: 'row',
@@ -160,7 +244,7 @@ const SignUpScreen = ({navigation}) => {
                           fontSize: 14,
                           fontFamily: 'SFUIDisplay-Medium',
                         }}>
-                        Client
+                        {selectedValue?.name || 'Client'}
                       </NormalText>
                       <Icon
                         style={{paddingRight: 15}}
@@ -168,7 +252,13 @@ const SignUpScreen = ({navigation}) => {
                         color={'#0AF4'}
                         size={24}
                       />
-                    </View>
+                      <Modal visible={isVisible} transparent>
+                        <ModalContents
+                          fildvalue={setFieldValue}
+                          selections={users}
+                        />
+                      </Modal>
+                    </TouchableOpacity>
                   </View>
                   <View
                     style={{

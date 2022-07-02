@@ -14,7 +14,6 @@ const Tab = createBottomTabNavigator();
 
 export default function MainStack() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
           animation: 'slide_from_left',
@@ -49,6 +48,5 @@ export default function MainStack() {
           component={SettingsScreen}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }

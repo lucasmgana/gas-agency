@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
   View,
   Image,
-  ImageBackground,
+  Modal,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {Colors} from '../../components/globalStyles.js/styles';
 import {useNavigation} from '@react-navigation/native';
 import DetailTopBar from '../../components/bars/DetailTopBar';
@@ -19,6 +19,84 @@ import LineSeparator from '../../components/elements/LineSeparator';
 import Icon from 'react-native-vector-icons/Feather';
 
 const BuyingScreen = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedValue, setSelectedValue] = useState({});
+
+  const toggleVisible = () => {
+    setIsVisible(!isVisible);
+  };
+
+  const ModalContents = ({selections}) => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#0005',
+        }}>
+        <View
+          style={{
+            minHeight: '10%',
+            width: '80%',
+            backgroundColor: '#F9E9F9',
+            borderRadius: 18,
+            overflow: 'hidden',
+            padding: 10,
+          }}>
+          <TouchableOpacity
+            onPress={toggleVisible}
+            style={{alignItems: 'flex-end', padding: 10, marginTop: -10}}>
+            <NormalText style={{color: Colors.primary, fontSize: 22}}>
+              x
+            </NormalText>
+          </TouchableOpacity>
+          <View>
+            {selections?.map(selection => (
+              <TouchableOpacity
+                key={selection.weight}
+                onPress={() => {
+                  setSelectedValue(selection);
+                  toggleVisible();
+                }}
+                style={{
+                  padding: 5,
+                  backgroundColor: '#ccc5',
+                  marginVertical: 2,
+                  borderRadius: 8,
+                  paddingHorizontal: 15,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <NormalText style={{color: Colors.primary, fontSize: 12}}>
+                  {selection.weight + ' KG'}
+                </NormalText>
+                <NormalText style={{color: Colors.primary, fontSize: 12}}>
+                  {selection.price}
+                </NormalText>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </View>
+    );
+  };
+
+  const selections = [
+    {
+      weight: 20,
+      price: 3000,
+    },
+    {
+      weight: 15,
+      price: 23000,
+    },
+    {
+      weight: 30,
+      price: 54500,
+    },
+  ];
+
   const navigation = useNavigation();
   return (
     <View
@@ -91,9 +169,10 @@ const BuyingScreen = () => {
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                     }}>
-                    <View>
-                      <View
-                        style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <TouchableOpacity
+                      onPress={toggleVisible}
+                      style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <View>
                         <NormalText
                           style={{
                             fontFamily: 'SFUIDisplay-Semibold',
@@ -102,49 +181,79 @@ const BuyingScreen = () => {
                           }}>
                           Weight
                         </NormalText>
-                        <Icon nam="mail" size={12} color="black" />
+                        <NormalText
+                          style={{
+                            fontFamily: 'SFUIDisplay-Semibold',
+                            fontSize: 20,
+                            color: Colors.primary,
+                          }}>
+                          {selectedValue?.weight ? (
+                            selectedValue?.weight + ' KG'
+                          ) : (
+                            <NormalText style={{fontSize: 16, color:'#f008'}}>select weight</NormalText>
+                          )}
+                        </NormalText>
                       </View>
-                      <NormalText
-                        style={{
-                          fontFamily: 'SFUIDisplay-Semibold',
-                          fontSize: 20,
-                          color: Colors.primary,
-                        }}>
-                        15 KG
-                      </NormalText>
-                    </View>
+                    </TouchableOpacity>
+                    <Modal visible={isVisible} transparent>
+                      <ModalContents selections={selections} />
+                    </Modal>
                   </View>
-                  <View>
-                    <NormalText
-                      style={{
-                        fontFamily: 'SFUIDisplay-Semibold',
-                        fontSize: 14,
-                        color: Colors.primary,
-                      }}>
-                      Price
-                    </NormalText>
-                    <NormalText
-                      style={{
-                        fontFamily: 'SFUIDisplay-Semibold',
-                        fontSize: 20,
-                        color: Colors.primary,
-                      }}>
-                      15,000/-
-                    </NormalText>
-                  </View>
+                  {selectedValue?.price && (
+                    <TouchableOpacity>
+                      <View>
+                        <NormalText
+                          style={{
+                            fontFamily: 'SFUIDisplay-Semibold',
+                            fontSize: 14,
+                            color: Colors.primary,
+                          }}>
+                          Price
+                        </NormalText>
+                        <NormalText
+                          style={{
+                            fontFamily: 'SFUIDisplay-Semibold',
+                            fontSize: 20,
+                            color: Colors.primary,
+                          }}>
+                          {selectedValue?.price
+                            ? selectedValue?.price + '/-'
+                            : ''}
+                        </NormalText>
+                      </View>
+                    </TouchableOpacity>
+                  )}
                 </View>
               </View>
             </View>
           </View>
-          <NormalText
-            style={{
-              fontFamily: 'SFUIDisplay-Medium',
-              fontSize: 14,
-              color: Colors.primary,
-              paddingTop: 12,
-            }}>
-            Seller
-          </NormalText>
+          <View>
+            <NormalText style={{color: Colors.primary}}>Seller Info</NormalText>
+            <NormalText
+              style={{
+                fontFamily: 'SFUIDisplay-Medium',
+                fontSize: 14,
+                color: Colors.primary,
+              }}>
+              Name: Juma Shomari
+            </NormalText>
+            <NormalText
+              style={{
+                fontFamily: 'SFUIDisplay-Medium',
+                fontSize: 14,
+                color: Colors.primary,
+              }}>
+              Phone: 076534231
+            </NormalText>
+            <NormalText
+              style={{
+                fontFamily: 'SFUIDisplay-Medium',
+                fontSize: 14,
+                color: Colors.primary,
+              }}>
+              Location: Msasani
+            </NormalText>
+          </View>
           <View
             style={{
               width: '100%',

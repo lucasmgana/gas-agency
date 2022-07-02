@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable prettier/prettier */
@@ -25,9 +26,7 @@ const App = () => {
 
   return (
     <StoreProvider>
-      <NavigationContainer>
-        <AppStack />
-      </NavigationContainer>
+      <AppStack />
     </StoreProvider>
   );
 };

@@ -17,9 +17,10 @@ import {Colors, styles} from '../../components/globalStyles.js/styles';
 import NormalText from '../../components/texts/NormalText';
 import Icon from 'react-native-vector-icons/Feather';
 import firestore from '@react-native-firebase/firestore';
+import {useDispatch} from 'react-redux';
+import {register} from '../../store/action/authentication';
 
 // our functionalities
-import {register} from '../../API/gasApi';
 
 const {card, button, container, text} = styles;
 
@@ -70,7 +71,7 @@ const SignUpScreen = ({navigation}) => {
           <View>
             {selections?.map(selection => (
               <TouchableOpacity
-                key={selection.weight}
+                key={Math.random()}
                 onPress={() => {
                   setSelectedValue(selection);
                   fildvalue('userType', selection.value);
@@ -97,42 +98,44 @@ const SignUpScreen = ({navigation}) => {
     );
   };
 
+  const dispatch = useDispatch();
   const [docExists, setExists] = useState(false);
   const ourHandleSubmitt = values => {
-    console.log(values);
+    dispatch(register(values));
   };
 
-  const register = async values => {
-    const ref = firestore().collection('gaseagent');
+  // const register = async values => {
+  //   const ref = firestore().collection('gaseagent');
 
-    const {username, phone} = values;
+  //   const {email, phone} = values;
 
-    ref.onSnapshot(querySnapshot => {
-      const list = [];
-      querySnapshot.forEach(doc => {
-        list.push(doc.data());
-      });
+  //   ref.onSnapshot(querySnapshot => {
+  //     const list = [];
+  //     querySnapshot.forEach(doc => {
+  //       list.push(doc.data());
+  //     });
 
-      list.map(item => {
-        if (item.username === username && item.phone === phone) {
-          setExists(true);
-          console.log('exists thiss one');
-        } else {
-          console.log('not exists');
-        }
-      });
-    });
+  //     list.map(item => {
+  //       if (item.email === email && item.phone === phone) {
+  //         setExists(true);
+  //         console.log('exists thiss one');
+  //       } else {
+  //         console.log('not exists');
+  //       }
+  //     });
+  //   });
 
-    if (docExists) {
-      (await (await ref.add(values)).get()).data();
-      console.log('created');
-      setExists(false);
-    }
-  };
+  //   if (docExists) {
+  //     (await (await ref.add(values)).get()).data();
+  //     console.log('created');
+  //     setExists(false);
+  //   }
+  // };
 
   const formValidation = Yup.object().shape({
-    username: Yup.string()
-      .min(4, "Username can't be fucked up like that!")
+    email: Yup.string()
+      .email()
+      .min(4, "email can't be fucked up like that!")
       .required('we fala hii ni muhimu'),
     phone: Yup.number('Phone must be a number')
       .test('len', 'Must be 10 digits', val => val?.toString().length === 10)
@@ -193,7 +196,7 @@ const SignUpScreen = ({navigation}) => {
 
           <Formik
             initialValues={{
-              username: '',
+              email: '',
               phone: '',
               password: '',
               confirm_password: '',
@@ -271,11 +274,11 @@ const SignUpScreen = ({navigation}) => {
                       }}>
                       <TextInput
                         underlineColorAndroid={'#0AF4'}
-                        placeholder="Username"
+                        placeholder="email"
                         placeholderTextColor={Colors.tertiary}
                         returnKeyType="next"
-                        value={values.username}
-                        onChangeText={handleChange('username')}
+                        value={values.email}
+                        onChangeText={handleChange('email')}
                         style={{
                           flex: 1,
                           color: Colors.primary,
@@ -289,7 +292,7 @@ const SignUpScreen = ({navigation}) => {
                         size={24}
                       />
                     </View>
-                    {touched.username && errors.username && (
+                    {touched.email && errors.email && (
                       <NormalText
                         style={{
                           color: 'red',
@@ -297,7 +300,7 @@ const SignUpScreen = ({navigation}) => {
                           marginLeft: 3,
                           marginTop: -5,
                         }}>
-                        {errors.username}
+                        {errors.email}
                       </NormalText>
                     )}
                   </View>

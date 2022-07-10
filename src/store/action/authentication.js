@@ -5,37 +5,44 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_LOADING = 'LOGIN_LOADING';
 
-export const login = () => {
-  const ref = firestore().collection('gaseagent');
-  console.log('hhhhhhhhhhhhhhhhhh',ref)
+export const login = user => {
+  const {email, password} = user;
   return dispatch => {
-    // dispatch({
-    //   type: LOGIN_LOADING,
-    //   data: {
-    //     loading: true,
-    //   },
-    // });
+    firestore()
+      .collection('users')
+      .where('email', '==', email)
+      .where('password', '==', password)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.size >= 1) {
+          querySnapshot.forEach(documentSnapshot => {
+            dispatch({
+              type: LOGIN_SUCCESS,
+              data: {
+                user: {
+                  userId: documentSnapshot.id,
+                  email: documentSnapshot.data().email,
+                  phone: documentSnapshot.data().phone,
+                  usertype: documentSnapshot.data().userType,
+                },
+                isAuthenticated: true,
+                error: '',
+                loading: false,
+              },
+            });
+          });
+        }
+      });
+  };
+};
 
-    dispatch({
-      type: LOGIN_SUCCESS,
-      data: {
-        user: {
-          username: 'abdele man',
-          usertype: 'admin',
-        },
-        isAuthenticated: true,
-        error: '',
-        loading: false,
-      },
-    });
-    // dispatch({
-    //   type: LOGIN_FAILED,
-    //   data: {
-    //     user: null,
-    //     isAuthenticated: false,
-    //     error: 'invalid credentials',
-    //     loading: false,
-    //   },
-    // });
+export const register = user => {
+  return dispatch => {
+    firestore()
+      .collection('users')
+      .add(user)
+      .then(() => {
+        console.log('user registered');
+      });
   };
 };

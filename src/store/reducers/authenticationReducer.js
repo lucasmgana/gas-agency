@@ -21,13 +21,16 @@ export const authReducer = (state = initialState, action) => {
 
     // case for login successful
     case AUTH.LOGIN_SUCCESS:
+
       return {
         ...state,
         user: {
-          username: action.data.user.username,
+          userId: action.data.user.userId,
+          email: action.data.user.email,
+          phone: action.data.user.phone,
           usertype: action.data.user.usertype,
         },
-        isAuthenticated: action.data.isAuthenticated,
+        isAuthenticated:true,
         error: '',
         loading: false,
       };

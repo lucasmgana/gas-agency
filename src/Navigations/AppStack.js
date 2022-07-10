@@ -15,13 +15,13 @@ const AppStack = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('authState', authState);
+    console.log('found user', authState.user.usertype);
   }, [dispatch]);
 
   return (
     <View style={{flex: 1}}>
       <NavigationContainer>
-        {authState.isAuthenticated ? <BottomTab /> : <AuthStack />}
+        {authState.isAuthenticated ? ( <BottomTab />) : <AuthStack />}
       </NavigationContainer>
     </View>
   );

@@ -755,16 +755,17 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
-    <string name="default_web_client_id" translatable="false">895015902613-5nkh82hou7h40blbicgo1ahavtefo5lu.apps.googleusercontent.com</string>
+    <string name="default_web_client_id" translatable="false">276977828119-6g3ds3mp7bb051b9jeeosl0v8r162kaq.apps.googleusercontent.com</string>
     <string name="error_icon_content_description">Error</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
-    <string name="gcm_defaultSenderId" translatable="false">895015902613</string>
-    <string name="google_api_key" translatable="false">AIzaSyBdCW0J1JWEfCoaDiTrlXs_lXq0ZxJSwXQ</string>
-    <string name="google_app_id" translatable="false">1:895015902613:android:f944c854723db9bb90ea9c</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBdCW0J1JWEfCoaDiTrlXs_lXq0ZxJSwXQ</string>
-    <string name="google_storage_bucket" translatable="false">gasagent-c8566.appspot.com</string>
+    <string name="firebase_database_url" translatable="false">https://gaseagent-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">276977828119</string>
+    <string name="google_api_key" translatable="false">AIzaSyBNEAwBeDoDh0YBqz5lWSvs9dVt7tapxyI</string>
+    <string name="google_app_id" translatable="false">1:276977828119:android:073b41c0fba9f187d23752</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBNEAwBeDoDh0YBqz5lWSvs9dVt7tapxyI</string>
+    <string name="google_storage_bucket" translatable="false">gaseagent.appspot.com</string>
     <string name="header_description" translatable="false">Heading</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
@@ -814,7 +815,7 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="progressbar_description" translatable="false">Progress Bar</string>
-    <string name="project_id" translatable="false">gasagent-c8566</string>
+    <string name="project_id" translatable="false">gaseagent</string>
     <string name="radiogroup_description" translatable="false">Radio Group</string>
     <string name="rn_tab_description" translatable="false">Tab</string>
     <string name="scrollbar_description" translatable="false">Scroll Bar</string>

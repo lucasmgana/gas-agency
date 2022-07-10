@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {TouchableOpacity, TextInput, View, ImageBackground} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Colors, styles} from '../../components/globalStyles.js/styles';
 import NormalText from '../../components/texts/NormalText';
@@ -13,17 +13,20 @@ import {login} from '../../store/action/authentication';
 const {card, button, container, text} = styles;
 
 const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const authState = useSelector(state => state.authState);
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    console.log('login clicked');
-    dispatch(login());
-    console.log('authState', authState);
+    const user = {
+      email,
+      password,
+    };
+    dispatch(login(user));
   };
 
-  useEffect(() => {
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   return (
     <ImageBackground
@@ -76,6 +79,7 @@ const LoginScreen = ({navigation}) => {
             <View
               style={{flexDirection: 'row', width: '100%', paddingVertical: 8}}>
               <TextInput
+                onChangeText={setEmail}
                 underlineColorAndroid={'#0AF4'}
                 placeholder="example@domain.com"
                 placeholderTextColor={Colors.tertiary}
@@ -95,6 +99,7 @@ const LoginScreen = ({navigation}) => {
             <View
               style={{flexDirection: 'row', width: '100%', paddingVertical: 8}}>
               <TextInput
+                onChangeText={setPassword}
                 underlineColorAndroid={'#0AF4'}
                 placeholder="* * * * * * * *"
                 placeholderTextColor={Colors.tertiary}

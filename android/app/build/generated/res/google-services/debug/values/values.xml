@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">895015902613-5nkh82hou7h40blbicgo1ahavtefo5lu.apps.googleusercontent.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">895015902613</string>
-    <string name="google_api_key" translatable="false">AIzaSyBdCW0J1JWEfCoaDiTrlXs_lXq0ZxJSwXQ</string>
-    <string name="google_app_id" translatable="false">1:895015902613:android:f944c854723db9bb90ea9c</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBdCW0J1JWEfCoaDiTrlXs_lXq0ZxJSwXQ</string>
-    <string name="google_storage_bucket" translatable="false">gasagent-c8566.appspot.com</string>
-    <string name="project_id" translatable="false">gasagent-c8566</string>
+    <string name="default_web_client_id" translatable="false">276977828119-6g3ds3mp7bb051b9jeeosl0v8r162kaq.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://gaseagent-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">276977828119</string>
+    <string name="google_api_key" translatable="false">AIzaSyBNEAwBeDoDh0YBqz5lWSvs9dVt7tapxyI</string>
+    <string name="google_app_id" translatable="false">1:276977828119:android:073b41c0fba9f187d23752</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBNEAwBeDoDh0YBqz5lWSvs9dVt7tapxyI</string>
+    <string name="google_storage_bucket" translatable="false">gaseagent.appspot.com</string>
+    <string name="project_id" translatable="false">gaseagent</string>
 </resources>

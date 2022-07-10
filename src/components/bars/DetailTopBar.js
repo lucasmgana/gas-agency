@@ -56,7 +56,8 @@ const DetailTopBar = ({
               style={{
                 flex: 1,
               }}>
-              <View
+              <TouchableOpacity
+                onPress={() => navigation.navigate('PostPage')}
                 style={{
                   backgroundColor: Colors.primary,
                   padding: 10,
@@ -76,7 +77,7 @@ const DetailTopBar = ({
                   }}>
                   add
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
           )}
           <View
@@ -105,7 +106,7 @@ const DetailTopBar = ({
         <>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            activeOpacity={.7}
+            activeOpacity={0.7}
             style={{
               height: 40,
               width: 40,

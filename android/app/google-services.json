@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "895015902613",
-    "project_id": "gasagent-c8566",
-    "storage_bucket": "gasagent-c8566.appspot.com"
+    "project_number": "276977828119",
+    "firebase_url": "https://gaseagent-default-rtdb.firebaseio.com",
+    "project_id": "gaseagent",
+    "storage_bucket": "gaseagent.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:895015902613:android:f944c854723db9bb90ea9c",
+        "mobilesdk_app_id": "1:276977828119:android:073b41c0fba9f187d23752",
         "android_client_info": {
           "package_name": "com.lucasmgana.onlinegasagent"
         }
       },
       "oauth_client": [
         {
-          "client_id": "895015902613-5nkh82hou7h40blbicgo1ahavtefo5lu.apps.googleusercontent.com",
+          "client_id": "276977828119-6g3ds3mp7bb051b9jeeosl0v8r162kaq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBdCW0J1JWEfCoaDiTrlXs_lXq0ZxJSwXQ"
+          "current_key": "AIzaSyBNEAwBeDoDh0YBqz5lWSvs9dVt7tapxyI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "895015902613-5nkh82hou7h40blbicgo1ahavtefo5lu.apps.googleusercontent.com",
+              "client_id": "276977828119-6g3ds3mp7bb051b9jeeosl0v8r162kaq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
